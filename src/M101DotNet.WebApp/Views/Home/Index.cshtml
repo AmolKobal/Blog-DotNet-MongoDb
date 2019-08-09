@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>.NET Blog</h1>
+    <p class="lead">Simple multi-user blog implementation for the .NET using MongoDb.</p>
+    <p><a href="http://education.mongodb.com" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Recent Posts</h2>
+        @foreach (var post in Model.RecentPosts)
+        {
+            <h4 class="postTitle">@post.Title</h4><h5>by <span class="author">@post.Author</span> on @post.CreatedAtUtc.ToString("dd MMM yyyy")</h5>
+            <p>@post.Content.Substring(0, Math.Min(post.Content.Length - 1, 100))...</p>
+            <p><a class="btn btn-default btn-sm" href="@Url.Action("Post", "Home", new { id = post.Id })">View &raquo;</a></p>
+        }
+    </div>
+</div>
